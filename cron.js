@@ -1,7 +1,9 @@
-const cron = require("cron");
+const cron = require("node-cron");
 const axios = require("axios");
 
-const job = new cron.CronJob("*/14 * * * * ", async function () {
+console.log("enters here regardless");
+
+cron.schedule("*/14 * * * * ", async function () {
   console.log("restarting");
   try {
     console.log("activate restarting ");
@@ -11,5 +13,3 @@ const job = new cron.CronJob("*/14 * * * * ", async function () {
     console.log("Err restarting");
   }
 });
-
-module.exports = job;
