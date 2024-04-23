@@ -2,11 +2,20 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const job = require("./cron");
+
+job.start();
 
 dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.get("/restart", (req, res) => {
+  res.status(200).json({
+    msg: "Restarting successful",
+  });
+});
 
 app.get("/getjobs", async (req, res) => {
   const username = process.env.GREENHOUSE;
